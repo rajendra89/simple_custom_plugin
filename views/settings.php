@@ -15,3 +15,23 @@
 		<button>Send</button>
 	</div>
 </form>
+
+<h1>Data from Database</h1>
+
+<?php global $wpdb;
+	
+	$results= $wpdb->get_results("select *from wp_leapfrog");
+
+	
+
+ ?>
+ <ul>
+ 	<?php foreach($results as  $result) { ?>
+ 	
+ 	<li> <h3>		
+ 		<?php echo $result->title; ?> <br>
+ 		</h3>
+ 	</li>
+ 		
+ 	<?php	} ?>
+ </ul>
