@@ -12,6 +12,7 @@
 */
 
 if(is_admin()){
+	register_activation_hook( __FILE__, 'leapfrog_activation' );
 	add_filter('manage_posts_columns' , 'add_action_column');
 	add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
 	add_action( 'admin_menu', 'leapfrog_menu' );
@@ -54,3 +55,18 @@ function action_setting_page(){
 	include('views/settings.php');
 
 }
+
+
+
+function leapfrog_activation(){
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'leapfrog';
+	$sql = "CREATE TABLE $table_name (
+	 id mediumint(9) unsigned NOT NULL AUTO_INCREMENT,
+	 title varchar(50) NOT NULL, 
+	 PRIMARY KEY  (id)
+	 );";
+
+	$wpdb->query($sql);
+
+	}
