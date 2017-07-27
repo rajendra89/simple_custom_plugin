@@ -8,11 +8,11 @@
 
 <h2><?php esc_attr_e( 'Form Elements: Input Fields', 'leapfrog' ); ?></h2>
 
-<form action="">
+<form action="db_conn.php" method="post">
 	<div>
 		<label for="">Title</label>
 		<input type="text" name="title"> <br>
-		<button>Send</button>
+		<button type="submit" name="submit">Save</button>
 	</div>
 </form>
 
@@ -21,8 +21,6 @@
 <?php global $wpdb;
 	
 	$results= $wpdb->get_results("select *from wp_leapfrog");
-
-	
 
  ?>
  <ul>

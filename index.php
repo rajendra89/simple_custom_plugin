@@ -16,13 +16,11 @@ if(is_admin()){
 	add_filter('manage_posts_columns' , 'add_action_column');
 	add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
 	add_action( 'admin_menu', 'leapfrog_menu' );
+
+	register_deactivation_hook( __FILE__, 'leapfrog_deactivation' );
 	
 
 }
-
-
-
-
 
 function add_action_column($columns) {
     return array_merge( $columns, 
@@ -70,3 +68,11 @@ function leapfrog_activation(){
 	$wpdb->query($sql);
 
 	}
+
+function leapfrog_deactivation() {
+     global $wpdb;
+     $table_name = $wpdb->prefix . 'leapfrog';
+     $sql = "DROP TABLE IF EXISTS $table_name;";
+     $wpdb->query($sql);
+     delete_option("my_plugin_db_version");
+}
