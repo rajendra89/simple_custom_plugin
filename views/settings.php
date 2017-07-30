@@ -1,3 +1,16 @@
+<?php 
+function insertuser(){
+  global $wpdb, $title;
+  $title= $_POST['title'];
+  $table_name = $wpdb->prefix . "leapfrog";
+  $wpdb->insert($table_name, array('title' => $title) ); 
+
+  	echo "Database insertation successful";  
+
+}
+
+insertuser(); ?>
+
 <h1> Hello Admin, welcome to your setting page! </h1>
 <h2><?php esc_attr_e( 'Tabs', 'leapfrog' ); ?></h2>
 <h2 class="nav-tab-wrapper">
@@ -8,7 +21,7 @@
 
 <h2><?php esc_attr_e( 'Form Elements: Input Fields', 'leapfrog' ); ?></h2>
 
-<form action="db_conn.php" method="post">
+<form action="" method="post">
 	<div>
 		<label for="">Title</label>
 		<input type="text" name="title"> <br>

@@ -1,10 +1,8 @@
 <?php
 
-
-
 /**
 * 	Plugin Name: Leapfrog
-*	Description: A custom Plugin
+*	Description: A simple custom Plugin 
 *	Plugin URI: http://github.com/rajendra89
 *	Version: 1.0.0
 *	Author: Rajendra Rijal
@@ -37,8 +35,6 @@ function custom_columns( $column, $post_id ) {
 	}
 }
 
-
-
 function leapfrog_menu() {
 	add_options_page( 
 		'Leapfrog Plugins setting Page',
@@ -53,9 +49,7 @@ function action_setting_page(){
 	include('views/settings.php');
 
 }
-
-
-
+//creates new db table on plugin activation
 function leapfrog_activation(){
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'leapfrog';
@@ -68,7 +62,7 @@ function leapfrog_activation(){
 	$wpdb->query($sql);
 
 	}
-
+//Drop newly created db table on plugin deactivation
 function leapfrog_deactivation() {
      global $wpdb;
      $table_name = $wpdb->prefix . 'leapfrog';
