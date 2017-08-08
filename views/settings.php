@@ -14,9 +14,9 @@ insertuser(); ?>
 <h1> Hello Admin, welcome to your setting page! </h1>
 <h2><?php esc_attr_e( 'Tabs', 'leapfrog' ); ?></h2>
 <h2 class="nav-tab-wrapper">
-	<a href="#" class="nav-tab">Tab #1</a>
-	<a href="#" class="nav-tab nav-tab-active">Tab #2</a>
-	<a href="#" class="nav-tab">Tab #3</a>
+	<a href=" <?php echo plugin_dir_url( __FILE__ ) . 'list.php'; ?>" class="nav-tab">Customer List</a>
+	<a href="#" class="nav-tab nav-tab-active">Main</a>
+	<a href="#" class="nav-tab">Feedbacks</a>
 </h2>
 
 <h2><?php esc_attr_e( 'Form Elements: Input Fields', 'leapfrog' ); ?></h2>
