@@ -16,6 +16,9 @@ if(is_admin()){
 	add_action( 'admin_menu', 'leapfrog_menu' );
 
 	register_deactivation_hook( __FILE__, 'leapfrog_deactivation' );
+	add_action( 'wp_enqueue_scripts', 'prefix_enqueue' );
+
+	add_action('wp_head','head_code');
 	
 
 }
@@ -69,4 +72,34 @@ function leapfrog_deactivation() {
      $sql = "DROP TABLE IF EXISTS $table_name;";
      $wpdb->query($sql);
      delete_option("my_plugin_db_version");
+}
+
+//Bootstrap CDN
+function prefix_enqueue() 
+{       
+    // JS
+    wp_register_script('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
+    wp_enqueue_script('prefix_bootstrap');
+    // Jquery
+    wp_register_script('prefix_jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js');
+    wp_enqueue_script('prefix_jquery');
+
+    // CSS
+    wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+    wp_enqueue_style('prefix_bootstrap');
+
+
+}
+
+    
+
+function head_code()
+{
+
+$output = '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>';    
+$output .= '<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>'; 
+$output .= '<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>';
+
+echo $output;
+
 }
