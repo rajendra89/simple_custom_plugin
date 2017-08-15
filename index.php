@@ -14,6 +14,7 @@ if(is_admin()){
 	add_filter('manage_posts_columns' , 'add_action_column');
 	add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
 	add_action( 'admin_menu', 'leapfrog_menu' );
+	add_action( 'option_page', 'leapfrog_submenu' );
 
 	register_deactivation_hook( __FILE__, 'leapfrog_deactivation' );
 	
@@ -43,6 +44,9 @@ function leapfrog_menu() {
 		'leapfrog-setting',
 		'action_setting_page'
 	);
+}
+function leapfrog_submenu(){
+	add_submenu_page('edit.php?post_type='.$this->plugin->posttype, __('Settings', $this->plugin->name), __('Settings', $this->plugin->name), 'manage_options', $this->plugin->name, array(&$this, 'adminPanel'));
 }
 
 function action_setting_page(){
